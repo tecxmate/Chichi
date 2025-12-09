@@ -42,9 +42,9 @@ const levelTranslations: Record<string, Record<string, string>> = {
 }
 
 export default function LevelPage() {
-  const params = useParams()
-  const locale = (params.locale as string) || "zh-Hant"
-  const level = (params.level as string).toUpperCase()
+  const params = useParams() as { locale?: string; level?: string }
+  const locale = (params?.locale as string) || "zh-Hant"
+  const level = ((params?.level as string) || "").toUpperCase()
   const [imageList, setImageList] = useState<string[]>([])
   const [lightboxImages, setLightboxImages] = useState<string[] | null>(null)
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
@@ -59,8 +59,8 @@ export default function LevelPage() {
     // Generate potential image paths (check PNG first, then JPG)
     const candidates = [
       `${folderBase}/1.png`, `${folderBase}/2.png`, `${folderBase}/3.png`,
-      `${folderBase}/4.png`, `${folderBase}/5.png`, `${folderBase}/6.png`,
-      `${folderBase}/7.png`, `${folderBase}/8.png`,
+      // `${folderBase}/4.png`, `${folderBase}/5.png`, `${folderBase}/6.png`,
+      // `${folderBase}/7.png`, `${folderBase}/8.png`,
       `${folderBase}/1.jpg`, `${folderBase}/2.jpg`, `${folderBase}/3.jpg`,
       `${folderBase}/4.jpg`, `${folderBase}/5.jpg`, `${folderBase}/6.jpg`,
       `${folderBase}/7.jpg`, `${folderBase}/8.jpg`,
@@ -198,10 +198,10 @@ export default function LevelPage() {
 
         {/* Lightbox */}
         {lightboxImages && (
-          <div
-            className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4"
-            onClick={closeLightbox}
-          >
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+            {/* Click anywhere on the dimmed background to close */}
+            <div className="absolute inset-0 bg-black/90" onClick={closeLightbox} />
+
             <button
               type="button"
               aria-label="Close"
@@ -213,7 +213,7 @@ export default function LevelPage() {
             <button
               type="button"
               aria-label="Previous"
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center z-20"
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center z-20 text-[30px]"
               onClick={(e) => {
                 e.stopPropagation()
                 showPrev()
@@ -224,7 +224,7 @@ export default function LevelPage() {
             <button
               type="button"
               aria-label="Next"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center z-20"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center z-20 text-[30px]"
               onClick={(e) => {
                 e.stopPropagation()
                 showNext()
@@ -233,18 +233,17 @@ export default function LevelPage() {
               ›
             </button>
             <div
-              className="relative max-w-[95vw] max-h-[95vh]"
+              className="relative max-w-[95vw] max-h-[95vh] z-10 flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-[90vw] md:w-[80vw] h-[70vh]">
-                <Image
-                  src={lightboxImages[lightboxIndex]}
-                  alt={`${levelTitle} image ${lightboxIndex + 1}`}
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                />
-              </div>
+              <Image
+                src={lightboxImages[lightboxIndex]}
+                alt={`${levelTitle} image ${lightboxIndex + 1}`}
+                width={1400}
+                height={900}
+                className="max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain"
+                sizes="100vw"
+              />
               {lightboxImages.length > 1 && (
                 <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white text-center">
                   <div className="text-sm">
