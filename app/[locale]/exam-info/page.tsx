@@ -14,7 +14,7 @@ const translations = {
   en: {
     title: 'VIETNAMESE LANGUAGE PROFICIENCY EXAM INFORMATION',
     subtitle: 'Detailed information about the Vietnamese Language Proficiency Exam organized by the University of Social Sciences and Humanities - Vietnam National University, Hanoi',
-    examScheduleTitle: 'Exam Schedule 2025',
+    examScheduleTitle: 'Exam Schedule 2026',
     examScheduleNote: 'Note: Backup exam dates are used when necessary.',
     examRound: 'Round',
     examDate: 'Main Exam Date',
@@ -59,7 +59,7 @@ const translations = {
   'zh-Hant': {
     title: '越南語能力考試資訊',
     subtitle: '以下是河內國家大學下屬社會科學與人文大學組織的《外國人越南語能力標準框架》考試的詳細資訊。',
-    examScheduleTitle: '2025年考試時間表',
+    examScheduleTitle: '2026年考試時間表',
     examScheduleNote: '注意：備用考試日期在必要時使用。',
     examRound: '考試批次',
     examDate: '主要考試日期',
@@ -104,7 +104,7 @@ const translations = {
   'zh-Hans': {
     title: '越南语能力考试信息',
     subtitle: '以下是河内国家大学下属社会科学与人文大学组织的《外国人越南语能力标准框架》考试的详细信息。',
-    examScheduleTitle: '2025年考试时间表',
+    examScheduleTitle: '2026年考试时间表',
     examScheduleNote: '注意：备用考试日期在必要时使用。',
     examRound: '考试批次',
     examDate: '主要考试日期',
@@ -152,79 +152,79 @@ const examSchedule = {
   en: [
     {
       round: 'Round 1',
-      date: 'March 29-30, 2025',
+      date: 'March 28-29, 2026',
       deadline: 'Feb 26 - Mar 11',
-      backup: 'March 30, 2025'
+      backup: 'March 29, 2026'
     },
     {
       round: 'Round 2',
-      date: 'June 28-29, 2025',
-      deadline: 'May 27 - Jun 10',
-      backup: 'June 29, 2025'
+      date: 'June 27-28, 2026',
+      deadline: 'May 25 - Jun 10',
+      backup: 'June 28, 2026'
     },
     {
       round: 'Round 3',
-      date: 'September 27-28, 2025',
-      deadline: 'Aug 26 - Sep 09',
-      backup: 'September 28, 2025'
+      date: 'September 26-27, 2026',
+      deadline: 'Aug 24 - Sep 09',
+      backup: 'September 27, 2026'
     },
     {
       round: 'Round 4',
-      date: 'December 27-28, 2025',
-      deadline: 'Nov 25 - Dec 09',
-      backup: 'December 29, 2025'
+      date: 'December 26-27, 2026',
+      deadline: 'Nov 23 - Dec 09',
+      backup: 'December 27, 2026'
     }
   ],
   'zh-Hant': [
     {
       round: '第一輪',
-      date: '2025年3月29-30日',
+      date: '2026年3月28-29日',
       deadline: '2月26日 - 3月11日',
-      backup: '2025年3月30日'
+      backup: '2026年3月29日'
     },
     {
       round: '第二輪',
-      date: '2025年6月28-29日',
-      deadline: '5月27日 - 6月10日',
-      backup: '2025年6月29日'
+      date: '2026年6月27-28日',
+      deadline: '5月25日 - 6月10日',
+      backup: '2026年6月28日'
     },
     {
       round: '第三輪',
-      date: '2025年9月27-28日',
-      deadline: '8月26日 - 9月9日',
-      backup: '2025年9月28日'
+      date: '2026年9月26-27日',
+      deadline: '8月24日 - 9月9日',
+      backup: '2026年9月27日'
     },
     {
       round: '第四輪',
-      date: '2025年12月27-28日',
-      deadline: '11月25日 - 12月9日',
-      backup: '2025年12月29日'
+      date: '2026年12月26-27日',
+      deadline: '11月23日 - 12月9日',
+      backup: '2026年12月27日'
     }
   ],
   'zh-Hans': [
     {
       round: '第一轮',
-      date: '2025年3月29-30日',
+      date: '2026年3月28-29日',
       deadline: '2月26日 - 3月11日',
-      backup: '2025年3月30日'
+      backup: '2026年3月29日'
     },
     {
       round: '第二轮',
-      date: '2025年6月28-29日',
-      deadline: '5月27日 - 6月10日',
-      backup: '2025年6月29日'
+      date: '2026年6月27-28日',
+      deadline: '5月25日 - 6月10日',
+      backup: '2026年6月28日'
     },
     {
       round: '第三轮',
-      date: '2025年9月27-28日',
-      deadline: '8月26日 - 9月9日',
-      backup: '2025年9月28日'
+      date: '2026年9月26-27日',
+      deadline: '8月24日 - 9月9日',
+      backup: '2026年9月27日'
     },
     {
       round: '第四轮',
-      date: '2025年12月27-28日',
-      deadline: '11月25日 - 12月9日',
-      backup: '2025年12月29日'
+      date: '2026年12月26-27日',
+      deadline: '11月23日 - 12月9日',
+      backup: '2026年12月27日'
     }
   ]
 };
