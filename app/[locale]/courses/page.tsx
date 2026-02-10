@@ -1261,13 +1261,54 @@ function CourseCard({
   // Use variant from props (URL) if provided, otherwise fallback to locale-based logic
   const variant = propVariant || (locale === 'zh-Hans' ? 'G' : locale === 'zh-Hant' ? 'P' : 'G');
   const folderBase = `/images/courses/${level}${variant}`;
-  const generatedCandidates = [
-    `${folderBase}/1.jpg`, `${folderBase}/2.jpg`, `${folderBase}/3.jpg`, `${folderBase}/4.jpg`, `${folderBase}/5.jpg`, `${folderBase}/6.jpg`,
-    `${folderBase}/1.png`, `${folderBase}/2.png`, `${folderBase}/3.png`, `${folderBase}/4.png`, `${folderBase}/5.png`, `${folderBase}/6.png`,
-  ];
   const [imageList, setImageList] = useState<string[]>(() =>
-    images && images.length > 0 ? images : generatedCandidates
+    images && images.length > 0 ? images : []
   );
+
+  // Check which images actually exist before rendering
+  useEffect(() => {
+    // If images prop is provided, use it directly
+    if (images && images.length > 0) {
+      setImageList(images);
+      return;
+    }
+
+    // Generate candidate paths
+    const generatedCandidates = [
+      `${folderBase}/1.png`, `${folderBase}/2.png`, `${folderBase}/3.png`,
+      `${folderBase}/4.png`, `${folderBase}/5.png`, `${folderBase}/6.png`,
+      `${folderBase}/7.png`, `${folderBase}/8.png`,
+      `${folderBase}/1.jpg`, `${folderBase}/2.jpg`, `${folderBase}/3.jpg`,
+      `${folderBase}/4.jpg`, `${folderBase}/5.jpg`, `${folderBase}/6.jpg`,
+      `${folderBase}/7.jpg`, `${folderBase}/8.jpg`,
+    ];
+
+    // Check which images exist
+    const imagePromises = generatedCandidates.map(async (src) => {
+      return new Promise<string | null>((resolve) => {
+        const img = new window.Image();
+        img.onload = () => resolve(src);
+        img.onerror = () => resolve(null);
+        img.src = src;
+      });
+    });
+
+    Promise.all(imagePromises).then((results) => {
+      const existingImages = results.filter((img): img is string => img !== null);
+      // Remove duplicates (in case both PNG and JPG exist for same number, prefer PNG)
+      const uniqueImages = existingImages.filter((img, idx, arr) => {
+        const imgNum = img.match(/\/(\d+)\.(png|jpg)$/)?.[1];
+        if (!imgNum) return true;
+        // If this is a JPG, check if PNG version exists earlier in array
+        if (img.endsWith('.jpg')) {
+          const pngVersion = arr.find(other => other.includes(`/${imgNum}.png`));
+          return !pngVersion;
+        }
+        return true;
+      });
+      setImageList(uniqueImages);
+    });
+  }, [folderBase, images]);
   const scrollByWidth = (direction: 'left' | 'right') => {
     const container = carouselRef.current;
     if (!container) return;
@@ -1316,7 +1357,7 @@ function CourseCard({
                   fill
                   sizes="100vw"
                   className="object-cover"
-                  onError={() => setImageList(prev => prev.filter((_, j) => j !== idx))}
+                  onError={() => setImageList(prev => prev.filter(img => img !== src))}
                 />
               </div>
             ))}
