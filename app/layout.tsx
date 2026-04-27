@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from '@/components/theme-provider'
 import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 // Import the client component
 const StagewiseToolbar = dynamic(
@@ -72,6 +73,9 @@ export default function RootLayout({
           {children}
           <StagewiseToolbar />
         </ThemeProvider>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   )
